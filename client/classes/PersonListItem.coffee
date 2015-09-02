@@ -32,15 +32,20 @@ Meteor.startup ->
       rootNode.gestures = new Famous.GestureHandler rootNode
 
       rootNode.gestures.on 'tap', (e,p) =>
+        @emit 'test'
+        console.log('hi')
         recalculateDuties = () ->
           for k,v of @persons
             v.duty = @sum / _.size(@persons)
+
 
         clickedPerson = rootNode.options.person
         bill = Session.get 'bill'
         if bill.persons[clickedPerson.id]
           rootNode.el.setProperty 'background', '#F5F5F5'
           delete bill.persons[clickedPerson.id]
+        if Object.keys(Session.get('bill').persons).length is 0
+          rootNode.el.setProperty 'background', 'white'
         else
           rootNode.el.setProperty 'background', '#E0E0E0'
           bill.persons[clickedPerson.id] = clickedPerson

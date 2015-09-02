@@ -33,11 +33,11 @@ Meteor.startup ->
       saveButtonNode.el.setProperty 'border-radius', '22px'
 #      saveButtonNode.el.setContent '+'
       saveButtonNode.addUIEvent 'click'
-      saveButtonNode.onReceive = (e,p) =>                                              # event| payload!!!!!!!!!!!!
+      saveButtonNode.onReceive = (e,p) =>
+        if e is 'test'
+          saveButtonNode.el.setProperty 'background-color', 'yellow'
         if e is 'click' and Object.keys(Session.get('bill').persons).length is 0
           console.log('you must tap on persons!')
-        if e is 'click' and Object.keys(Session.get('bill').persons).length isnt 0
-          saveButtonNode.el.setProperty 'background-color', 'orange'
         if e is 'click' and Object.keys(Session.get('bill').persons).length isnt 0
           saveButtonNode.el.setAttribute('src', './images/okk.png')
           saveButtonNode.el.setProperty 'background-color', 'white'
