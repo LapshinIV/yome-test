@@ -72,7 +72,6 @@ Meteor.startup ->
           Meteor.setTimeout(( ->
             saveButtonNode.el.setAttribute('src', './images/arrow.png')
             saveButtonNode.el.setProperty 'background-color', 'orange'), 1000)
-
           console.log(Session.get('bill'))
           Session.set 'bill',
             sum: 300,
