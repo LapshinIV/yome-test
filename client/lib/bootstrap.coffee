@@ -34,12 +34,13 @@ App.renderTemplateWithData = (template, data, node) ->
 
 Session.set 'bill',
   sum: 300,
-  persons: {},
-  myFunc: () ->
-    console.log('hi')
+  persons: {}
 
-myFunc = (bill) ->
-  bill.sum > 0 and bill.persons.length > 0
+#myFunc: () ->
+#  console.log('hi')
+
+#myFunc = (bill) ->
+#  bill.sum > 0 and bill.persons.length > 0
 
 
 
@@ -53,6 +54,5 @@ myFunc = (bill) ->
 #console.log('hi')
 #cat = new Cat({name: 'adsfasdf', age: 23})
 #Session.set 'cat', cat
-
+#
 #console.log cat.sound()
-

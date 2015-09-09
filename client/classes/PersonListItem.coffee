@@ -39,7 +39,6 @@ Meteor.startup ->
 
       rootNode.gestures.on 'tap', (e,p) =>
         @emit 'test2'                     #bill.Add.friend() -> @emit "test"
-        console.log('hi')
         recalculateDuties = () ->
           for k,v of @persons
             v.duty = @sum / _.size(@persons)
@@ -48,10 +47,12 @@ Meteor.startup ->
         bill = Session.get 'bill'
         if bill.persons[clickedPerson.id]
           rootNode.el.setProperty 'background', '#F5F5F5'
+          console.log('white')
           delete bill.persons[clickedPerson.id]
           @emit 'test3'
         else
           rootNode.el.setProperty 'background', '#E0E0E0'
+          console.log('grey')
           bill.persons[clickedPerson.id] = clickedPerson
         recalculateDuties.call(bill)
         Session.set 'bill', bill
