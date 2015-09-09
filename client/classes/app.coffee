@@ -34,11 +34,14 @@ Meteor.startup ->
 #      saveButtonNode.el.setContent '+'
       saveButtonNode.addUIEvent 'click'
       saveButtonNode.onReceive = (e,p) =>
-        if e is 'test'
+        if e is 'test3'
+          saveButtonNode.el.setProperty 'background-color', 'grey'
+        if e is 'test2'
           saveButtonNode.el.setProperty 'background-color', 'yellow'
         if e is 'click' and Object.keys(Session.get('bill').persons).length is 0
           console.log('you must tap on persons!')
         if e is 'click' and Object.keys(Session.get('bill').persons).length isnt 0
+          @emit 'test'
           saveButtonNode.el.setAttribute('src', './images/okk.png')
           saveButtonNode.el.setProperty 'background-color', 'white'
           console.log moment().format(), 'Bills collection count:', Bills.find().count()
@@ -71,14 +74,13 @@ Meteor.startup ->
           console.log moment().format(), 'Bills collection count:', Bills.find().count()
           Meteor.setTimeout(( ->
             saveButtonNode.el.setAttribute('src', './images/arrow.png')
-            saveButtonNode.el.setProperty 'background-color', 'orange'), 1000)
+            saveButtonNode.el.setProperty 'background-color', 'grey'), 1000)
 
           console.log(Session.get('bill'))
           Session.set 'bill',
             sum: 300,
             persons: {}
           console.log(Session.get('bill'))
-
 
       if @meteor_collection_people_ready
         # todo: code duplicate! vomiting

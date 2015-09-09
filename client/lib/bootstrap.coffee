@@ -43,16 +43,16 @@ myFunc = (bill) ->
 
 
 
-class Cat
-  constructor: (parameters) ->
-    this.name = parameters.name
-    this.age = parameters.age
+#class Cat
+#  constructor: (parameters) ->
+#    this.name = parameters.name
+#    this.age = parameters.age
 
-  sound: () ->
-    "meouw"
-console.log('hi')
-cat = new Cat({name: 'adsfasdf', age: 23})
-Session.set 'cat', cat
+#  sound: () ->
+#    "meouw"
+#console.log('hi')
+#cat = new Cat({name: 'adsfasdf', age: 23})
+#Session.set 'cat', cat
 
-console.log cat.sound()
+#console.log cat.sound()
 

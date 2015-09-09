@@ -8,8 +8,9 @@ Meteor.startup ->
       @padding = 5
       @height = @padding + @options.size + @padding
       @build(this)
-
+    console.log('2')
     build: (rootNode) ->
+      console.log('1')
       rootNode.setSizeMode 'relative', 'absolute'
       rootNode.setAbsoluteSize 0, rootNode.height
       rootNode.el = new Famous.DOMElement rootNode, content: ' '
@@ -28,24 +29,27 @@ Meteor.startup ->
       faceNode.setPosition rootNode.padding, rootNode.padding
 
       App.renderTemplateWithData Template.PersonListItem, rootNode.options.person, textNode
+      console.log('222')
+      rootNode.el.onReceive = (e,p) ->
+        console.log('333')
+        if e is 'test'
+          rootNode.el.setProperty 'background', '#F5F5F5'
 
       rootNode.gestures = new Famous.GestureHandler rootNode
 
       rootNode.gestures.on 'tap', (e,p) =>
-        @emit 'test'
+        @emit 'test2'                     #bill.Add.friend() -> @emit "test"
         console.log('hi')
         recalculateDuties = () ->
           for k,v of @persons
             v.duty = @sum / _.size(@persons)
-
 
         clickedPerson = rootNode.options.person
         bill = Session.get 'bill'
         if bill.persons[clickedPerson.id]
           rootNode.el.setProperty 'background', '#F5F5F5'
           delete bill.persons[clickedPerson.id]
-        if Object.keys(Session.get('bill').persons).length is 0
-          rootNode.el.setProperty 'background', 'white'
+          @emit 'test3'
         else
           rootNode.el.setProperty 'background', '#E0E0E0'
           bill.persons[clickedPerson.id] = clickedPerson
